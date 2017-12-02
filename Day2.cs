@@ -27,11 +27,45 @@ namespace adventofcode2017
             int answer;
             answer = this.process1(data);
             Console.WriteLine(answer);
+            Console.WriteLine("proc 2");
+            answer = this.process2(data);
+            Console.WriteLine(answer);
+        }
+
+        private int process2(int[,] code)
+        {
+            int min, max, result;
+            result = 0;
+            for(var i=0;i<16;i++)
+            {
+                max = min = code[i,0];
+
+                for(var j=0;j<16;j++)
+                {
+                    bool found = false;   
+                    for(var k=0;k<16;k++)
+                    {
+                        if ((j != k) && (code[i,j] > code[i,k]))
+                        {
+                            if (code[i,j] % code[i,k] == 0)
+                            {
+                                result += code[i,j] / code[i,k];
+                                found = true;
+                                Console.WriteLine(string.Format("i: {0}; j: {1}; k: {2}", i, code[i,j],code[i,k]));
+                                break;
+                            }
+                        }
+                        if (found) break;
+                    }
+                }
+            }
+
+            return(result);
+       
+
         }
         private int process1(int[,] code)
         {
-            Console.WriteLine(code.Rank);     
-            Console.WriteLine(code.Length); 
             int min, max, result;
             result = 0;
             for(var i=0;i<16;i++)
@@ -42,9 +76,6 @@ namespace adventofcode2017
                 {
                     min = code[i,j] < min ? code[i,j] : min;
                     max = code[i,j] > max ? code[i,j] : max;
-
-                    Console.Write(code[i,j]);
-                    Console.Write(' ');
 
                 }
                 Console.WriteLine(string.Format("min: {0} - max {1}", min, max));

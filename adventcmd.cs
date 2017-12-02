@@ -1,7 +1,7 @@
 namespace adventofcode2017
 {
-    public interface adventcmd
+    public interface IAdventCmd
     {
-         
+        void doDay(); 
     }
 }

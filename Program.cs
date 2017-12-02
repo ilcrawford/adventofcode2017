@@ -6,9 +6,12 @@ namespace adventofcode2017
     {
         static void Main(string[] args)
         {
-            var day1 = new Day1();
-            day1.doDay();
-            Console.WriteLine("Hello World!");
+            IAdventCmd day = new Day1();
+            Console.WriteLine("Day1");
+            day.doDay();
+            Console.WriteLine("Day2");
+            day = new Day2();
+            day.doDay();
             //Console.Read();
         }
     }
